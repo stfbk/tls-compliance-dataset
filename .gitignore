@@ -1,0 +1,4 @@
+*/__pycache__/
+output.prisma
+requirements.db
+.env/
