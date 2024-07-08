@@ -62,8 +62,19 @@ Please refer to the [Wiki](https://github.com/stfbk/tls-compliance-dataset/wiki)
 
 ## Related Projects
 
-This dataset is the result of a study aimed to design a methodology to assess the compliance level of new and existing webservers. More detail about the methodology and the process behind its creation can be found in the paper *Automating Compliance for Improving TLS Security Postures: An Assessment of Public Administration Endpoints*.
+This dataset is the result of a study aimed to design a methodology to assess the compliance level of new and existing webservers. More detail about the methodology and the process behind its creation can be found in the paper **Automating Compliance for Improving TLS Security Postures: An Assessment of Public Administration Endpoints**.
 
-
+```BibTex
+@proceedings{secrypt-2024,
+	title        = {Automating Compliance for Improving TLS Security Postures: An Assessment of Public Administration Endpoints.},
+	author       = {Germenia, R.; Manfredi, S.; Rizzi, M.; Sciarretta, G.; Tomasi, A. and Ranise, S.},
+	year         = 2024,
+	booktitle    = {Proceedings of the 201st International Conference on Security and Cryptography, SECRYPT 2024, Dijon, France, July 08-10, 2024},
+	publisher    = {SCITEPRESS},
+	isbn         = {978-989-758-709-2},
+	conference   = {secrypt},
+	editor       = {Sabrina De Capitani di Vimercati and Pierangela Samarati}
+}
+```
 
 The content of this dataset is an integral part of [TLSAssistant](https://github.com/stfbk/tlsassistant), an open-source modular framework capable of identifying a wide range of TLS vulnerabilities and assessing compliance with multiple guidelines. Its actionable report can assist the user in correctly and easily fixing their configurations.
