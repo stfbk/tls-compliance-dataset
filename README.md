@@ -62,18 +62,20 @@ Please refer to the [Wiki](https://github.com/stfbk/tls-compliance-dataset/wiki)
 
 ## Related Projects
 
-This dataset is the result of a study aimed to design a methodology to assess the compliance level of new and existing webservers. More detail about the methodology and the process behind its creation can be found in the paper **Automating Compliance for Improving TLS Security Postures: An Assessment of Public Administration Endpoints**.
+This dataset is the result of a study aimed to design a methodology to assess the compliance level of new and existing webservers. More detail about the methodology and the process behind its creation can be found in the paper *[Automating Compliance for Improving TLS Security Postures: An Assessment of Public Administration Endpoints](https://www.scitepress.org/Link.aspx?doi=10.5220/0012764700003767)*:
 
 ```BibTex
-@proceedings{secrypt-2024,
-	title        = {Automating Compliance for Improving TLS Security Postures: An Assessment of Public Administration Endpoints.},
-	author       = {Germenia, R.; Manfredi, S.; Rizzi, M.; Sciarretta, G.; Tomasi, A. and Ranise, S.},
-	year         = 2024,
-	booktitle    = {Proceedings of the 201st International Conference on Security and Cryptography, SECRYPT 2024, Dijon, France, July 08-10, 2024},
-	publisher    = {SCITEPRESS},
-	isbn         = {978-989-758-709-2},
-	conference   = {secrypt},
-	editor       = {Sabrina De Capitani di Vimercati and Pierangela Samarati}
+@conference{secrypt24,
+	author={Riccardo Germenia. and Salvatore Manfredi. and Matteo Rizzi. and Giada Sciarretta. and Alessandro Tomasi. and Silvio Ranise.},
+	title={Automating Compliance for Improving TLS Security Postures: An Assessment of Public Administration Endpoints},
+	booktitle={Proceedings of the 21st International Conference on Security and Cryptography - SECRYPT},
+	year={2024},
+	pages={450-458},
+	publisher={SciTePress},
+	organization={INSTICC},
+	doi={10.5220/0012764700003767},
+	isbn={978-989-758-709-2},
+	issn={2184-7711},
 }
 ```
 
