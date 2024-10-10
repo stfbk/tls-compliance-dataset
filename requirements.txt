@@ -1,3 +1,5 @@
 pandas
 openpyxl
 prisma
+pyexcel-ods3
+odfpy

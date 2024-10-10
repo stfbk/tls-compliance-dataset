@@ -1,4 +1,5 @@
 */__pycache__/
 output.prisma
 requirements.db
+requirements.ods
 .env/

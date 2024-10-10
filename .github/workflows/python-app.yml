@@ -36,7 +36,8 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         python3 schema_creator.py
         python3 database_filler.py
+        python3 ods_converter.py
     - name: release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "requirements.db"
+        artifacts: "requirements.db,requirements.ods"
