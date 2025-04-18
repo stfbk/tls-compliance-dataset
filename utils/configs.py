@@ -4,7 +4,9 @@ GUIDELINE_BLOCKS = 15
 RANDOM_STRING = "7WJsEz"
 
 # list of sheet_names that need a different template, order is important
-different_templates = ["KeyLengths", "CertificateExtensions"]
+different_templates = ["KeyLengths", "CertificateExtensions", "Signature"]
+
+has_numeric_id = ["Signature"]
 
 # The syntax for this is: Sheet: list of keys
 # it is assumed that a field with the same name of the key was added using the additional_fields dict
