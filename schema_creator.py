@@ -97,7 +97,7 @@ def generate_template(df: Dict[str, pd.DataFrame]):
     subprocess.call(["prisma", "format", "--schema=output.prisma"])
     subprocess.call(["prisma", "db", "push", "--schema=output.prisma"])
 
-
+dataframe = {}
 if __name__ == "__main__":
     dataframe = read_dataframes()
     generate_template(dataframe)

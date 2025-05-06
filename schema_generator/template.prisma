@@ -16,13 +16,14 @@ model Guideline {
   KeyLengths7WJsEz            KeyLengths7WJsEz[]
   Sheet7WJsEz                 Sheet7WJsEz[]
   CertificateExtensions7WJsEz CertificateExtensions7WJsEz[]
+  Signature7WJsEz             Signature7WJsEz[]
 }
 
 // GENERAL DATA
 model CipherSuite {
-  name          String  @id
-  iana_code     String
-  }
+  name      String @id
+  iana_code String
+}
 
 model Extension {
   name                String                @id
@@ -37,7 +38,8 @@ model Groups {
 }
 
 model Protocol {
-  name String @id
+  name        String @id
+  tls_version String
 }
 
 model Hash {
@@ -75,9 +77,10 @@ model KeyLengths {
 }
 
 model Signature {
-  name      String @id
+  id        Int    @id
+  name      String
   iana_code String
-  version   String
+  version   String?
 }
 
 // SPECIAL TABLES
@@ -133,6 +136,17 @@ model CertificateExtensions7WJsEz {
   name          String
   level         String    @default("<Not mentioned>")
   critical      String    @default("no")
+  condition     String?   @default("")
+
+  @@id([id, name])
+}
+
+model Signature7WJsEz {
+  id            Int
+  guideline     Guideline @relation(fields: [guidelineName], references: [name])
+  guidelineName String
+  name          String
+  level         String    @default("<Not mentioned>")
   condition     String?   @default("")
 
   @@id([id, name])

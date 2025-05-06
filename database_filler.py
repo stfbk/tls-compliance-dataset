@@ -4,7 +4,8 @@ from typing import Tuple
 
 import pandas as pd
 
-from utils.configs import sheets_mapping, different_names_pos, sheet_columns, guidelines, converters
+from utils.configs import sheets_mapping, different_names_pos, sheet_columns, guidelines, converters, \
+    has_numeric_id
 from utils.filler_utils import get_requirements_columns, get_columns_count_for_guideline, split_sheet, \
     get_version_name_for_database, get_guideline_name_for_database, is_double_guideline, get_first_col_for_guideline, \
     get_column, read_dataframes
@@ -135,14 +136,14 @@ if __name__ == "__main__":
     guidelines_mapping = {}
     for guideline in guidelines:
         guidelines_mapping[guideline.upper()] = guideline
-    for sheet in dataframe:
+    for sheet, sheet_content in dataframe.items():
         sheet_mapped = sheets_mapping.get(sheet.strip())
         if isinstance(sheet, str) and sheet_mapped:
             done = False
             values = []
             if has_extra_table(sheet):
                 fill_extra_table(sheet)
-            general_dataframe, guidelines_dataframe = split_sheet(dataframe[sheet])
+            general_dataframe, guidelines_dataframe = split_sheet(sheet_content)
             values_tuple = ()
             # old_values is needed for some strange cases like key_signature
             old_values = []
@@ -154,7 +155,7 @@ if __name__ == "__main__":
                 else:
                     tmp_list = []
                     for i, v in enumerate(values_tuple):
-                        if pd.isna(v) and v != old_values[i]:
+                        if pd.isna(v) and v != old_values[i] and sheet_mapped not in has_numeric_id:
                             tmp_list.append(old_values[i])
                         else:
                             tmp_list.append(v)
@@ -166,6 +167,9 @@ if __name__ == "__main__":
             values_string += "?," * len(values_tuple)
             # Remove last ',' and replace it with ')'
             values_string = values_string[:-1] + ")"
+            if sheet_mapped in has_numeric_id:
+                values = [tuple([i, *v]) for i, v in enumerate(values)]
+                values_string = values_string.replace("?,", "?, ?,", 1)
             sql_query = f"INSERT OR REPLACE INTO {sheet_mapped} VALUES " + values_string
             cur.executemany(sql_query, values)
             conn.commit()
@@ -235,17 +239,18 @@ if __name__ == "__main__":
                             columns_to_apply = header[1].split(" [")[1].replace("]", "").split(",")
                             columns_to_apply = [int(c.strip()) for c in columns_to_apply]
                         counter = 0
-                        for t_name in values_dict:
+                        for t_name, values_dict_table in values_dict.items():
                             guideline_db_name = get_guideline_name_for_database(header[0])
-                            # this is needed only for the case of KeyLengthsBSI and KeyLengths BSI (from ...)
+                            # this is needed only for the case of KeyLengthsBSI and
+                            # KeyLengths BSI (from ...)
                             has_valid_underscore = "_" in guideline_db_name and "_" in t_name
                             if t_name.startswith(sheet_mapped + guideline_db_name):
                                 if "_" not in t_name or has_valid_underscore:
                                     counter += 1
                                     if " [" in header[1] and counter not in columns_to_apply:
                                         continue
-                                    values_dict[t_name][row[0]].append(content)
-                    if is_double_guideline(header[0]):
+                                    values_dict_table[row[0]].append(content)
+                    if is_double_guideline(header[0]) and table_name in values_dict:
                         tokens = header[0].split("+")
                         base_guideline = tokens[0].replace("(", "").strip()
                         for other_guideline in tokens[1:]:
@@ -304,8 +309,7 @@ if __name__ == "__main__":
                         while len(entry) < table_columns_count:
                             entry.append(None)
                         values_groups[table].append(tuple(entry))
-            for table in values_groups:
-                values = values_groups[table]
+            for table, values in values_groups.items():
                 values_string = "("
                 # The values list should contain tuples that are all the same size
                 values_string += "?," * (len(values[0]))
