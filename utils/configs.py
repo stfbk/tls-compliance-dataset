@@ -18,7 +18,8 @@ guidelines = {
     "ANSSI": "",
     "AgID": "",
     "BSI": "",
-    "Mozilla": ""
+    "Mozilla": "",
+    "ACN": ""
 }
 
 levels_mapping = {
