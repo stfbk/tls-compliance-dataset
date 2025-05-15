@@ -1,12 +1,12 @@
 # schema creator configs
 TEMPLATE_FILE = "schema_generator/template.prisma"
-GUIDELINE_BLOCKS = 15
+GUIDELINE_BLOCKS = 16
 RANDOM_STRING = "7WJsEz"
 
 # list of sheet_names that need a different template, order is important
-different_templates = ["KeyLengths", "CertificateExtensions", "Signature"]
+different_templates = ["KeyLengths", "CertificateExtensions", "Signature", "SignatureAlgsCertificate"]
 
-has_numeric_id = ["Signature"]
+has_numeric_id = ["Signature", "SignatureAlgsCertificate"]
 
 # The syntax for this is: Sheet: list of keys
 # it is assumed that a field with the same name of the key was added using the additional_fields dict
@@ -36,6 +36,7 @@ sheets_mapping = {
     "TLS extensions": "Extension",
     "Supported groups": "Groups",
     "Signature algorithms": "Signature",
+    "Signature algorithms certificate": "SignatureAlgsCertificate",
     "Hash Algorithm": "Hash",
     "Certificate Signature": "CertificateSignature",
     "Key lengths": "KeyLengths",

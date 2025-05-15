@@ -11,12 +11,13 @@ model TlsVersion {
 }
 
 model Guideline {
-  name                        String                        @id
-  updated_at                  String
-  KeyLengths7WJsEz            KeyLengths7WJsEz[]
-  Sheet7WJsEz                 Sheet7WJsEz[]
-  CertificateExtensions7WJsEz CertificateExtensions7WJsEz[]
-  Signature7WJsEz             Signature7WJsEz[]
+  name                           String                           @id
+  updated_at                     String
+  KeyLengths7WJsEz               KeyLengths7WJsEz[]
+  Sheet7WJsEz                    Sheet7WJsEz[]
+  CertificateExtensions7WJsEz    CertificateExtensions7WJsEz[]
+  Signature7WJsEz                Signature7WJsEz[]
+  SignatureAlgsCertificate7WJsEz SignatureAlgsCertificate7WJsEz[]
 }
 
 // GENERAL DATA
@@ -52,7 +53,6 @@ model Hash {
 model CertificateSignature {
   name        String @id
   iana_code   String
-  tls_version String
 }
 
 model Certificate {
@@ -77,10 +77,16 @@ model KeyLengths {
 }
 
 model Signature {
-  id        Int    @id
+  id        Int     @id
   name      String
   iana_code String
   version   String?
+}
+
+model SignatureAlgsCertificate {
+  id        Int     @id
+  name      String
+  iana_code String
 }
 
 // SPECIAL TABLES
@@ -142,6 +148,17 @@ model CertificateExtensions7WJsEz {
 }
 
 model Signature7WJsEz {
+  id            Int
+  guideline     Guideline @relation(fields: [guidelineName], references: [name])
+  guidelineName String
+  name          String
+  level         String    @default("<Not mentioned>")
+  condition     String?   @default("")
+
+  @@id([id, name])
+}
+
+model SignatureAlgsCertificate7WJsEz {
   id            Int
   guideline     Guideline @relation(fields: [guidelineName], references: [name])
   guidelineName String
