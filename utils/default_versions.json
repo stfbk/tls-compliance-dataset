@@ -1,0 +1,90 @@
+{
+    "Protocol": {
+        "NIST": "1_1_2024CUSTOMERFACING",
+        "BSI": "CUSTOMERFACING",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "AGID": "",
+        "MOZILLA": "INTERMEDIATE"
+    },
+    "CipherSuite": {
+        "NIST": "PREFERRED1",
+        "BSI": "PREFERRED1",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "MOZILLA": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "Extension": {
+        "NIST": "",
+        "BSI": "",
+        "ANSSI": "",
+        "ACN": "",
+        "AGID": ""
+    },
+    "CertificateSignature": {
+        "NIST": "",
+        "BSI": "",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "MOZILLA": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "Hash": {
+        "NIST": "",
+        "BSI": "",
+        "ANSSI": "",
+        "ACN": "",
+        "MOZILLA": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "Signature": {
+        "NIST": "",
+        "BSI": "CLIENT_SERVERSIGNATURES",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "MOZILLA": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "SignatureAlgsCertificate": {
+        "NIST": "",
+        "BSI": "CERTIFICATE_SIGNATURES",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "MOZILLA": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "Groups": {
+        "NIST": "CUSTOMERFACING",
+        "BSI": "CUSTOMERFACING",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "MOZILLA": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "KeyLengths": {
+        "ANSSI": "",
+        "MOZILLA": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE",
+        "ACN": "RECOMMENDED",
+        "NIST": "",
+        "BSI": "1_1_2024"
+    },
+    "Certificate": {
+        "NIST": "",
+        "BSI": "",
+        "ANSSI": "",
+        "MOZILLA": ""
+    },
+    "CertificateExtensions": {
+        "NIST": "",
+        "BSI": "",
+        "ANSSI": "",
+        "MOZILLA": ""
+    },
+    "Misc": {
+        "NIST": "",
+        "BSI": "",
+        "AGID": ""
+    }
+}
