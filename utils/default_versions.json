@@ -4,6 +4,7 @@
         "BSI": "CUSTOMERFACING",
         "ANSSI": "",
         "ACN": "RECOMMENDED",
+        "ENISA": "",
         "AGID": "",
         "MOZILLA": "INTERMEDIATE"
     },
@@ -12,6 +13,7 @@
         "BSI": "PREFERRED1",
         "ANSSI": "",
         "ACN": "RECOMMENDED",
+        "ENISA": "",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -20,6 +22,7 @@
         "BSI": "",
         "ANSSI": "",
         "ACN": "",
+        "ENISA": "",
         "AGID": ""
     },
     "CertificateSignature": {
@@ -27,6 +30,7 @@
         "BSI": "",
         "ANSSI": "",
         "ACN": "RECOMMENDED",
+        "ENISA": "",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -35,6 +39,7 @@
         "BSI": "",
         "ANSSI": "",
         "ACN": "",
+        "ENISA": "",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -43,6 +48,7 @@
         "BSI": "CLIENT_SERVERSIGNATURES",
         "ANSSI": "",
         "ACN": "RECOMMENDED",
+        "ENISA": "",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -51,6 +57,7 @@
         "BSI": "CERTIFICATE_SIGNATURES",
         "ANSSI": "",
         "ACN": "RECOMMENDED",
+        "ENISA": "",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -59,6 +66,7 @@
         "BSI": "CUSTOMERFACING",
         "ANSSI": "",
         "ACN": "RECOMMENDED",
+        "ENISA": "",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -67,6 +75,7 @@
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE",
         "ACN": "RECOMMENDED",
+        "ENISA": "",
         "NIST": "",
         "BSI": "1_1_2024"
     },

@@ -19,7 +19,8 @@ guidelines = {
     "AgID": "",
     "BSI": "",
     "Mozilla": "",
-    "ACN": ""
+    "ACN": "",
+    "ENISA": ""
 }
 
 levels_mapping = {
