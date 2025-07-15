@@ -40,7 +40,7 @@ model Groups {
 
 model Protocol {
   name        String @id
-  tls_version String
+  iana_code String
 }
 
 model Hash {

@@ -1,11 +1,13 @@
 from typing import Dict, List
 
-import re, io
+import re
+import io
 
 import pandas as pd
 
 from .configs import guidelines, levels_mapping, sheet_columns, sheets_mapping
 
+NOTE_REGEX = r'\[\^\d+\]'
 
 def split_sheet(sheet: pd.DataFrame):
     """
@@ -46,7 +48,8 @@ def get_requirements_columns(requirements_df: pd.DataFrame, sheet_name: str) -> 
     for guideline in result_dict:
         valid_indexes = sheet_columns.get(sheet_name, {}).get(guideline)
         if valid_indexes:
-            result_dict[guideline] = get_column_names_from_indexes(requirements_df, guideline, valid_indexes)
+            result_dict[guideline] = get_column_names_from_indexes(
+                requirements_df, guideline, valid_indexes)
     return result_dict
 
 
@@ -133,6 +136,7 @@ def get_first_col_for_guideline(df: pd.DataFrame, guideline: str):
 def get_column(df: pd.DataFrame, index: int):
     return df.iloc[:, index]
 
+
 def get_standardized_level(level):
     """
     Takes a level in input and returns it after removing °,* and trailing spaces
@@ -145,19 +149,33 @@ def get_standardized_level(level):
     else:
         return ""
 
-def clean_string(string: str):
-    while "^" in string:
-        string = re.sub(r'\[.\d+\]', '', string)
-    return string.strip().strip("(").strip(")").strip("'").strip()
 
-def single_string_clean(string: str):
+def clean_string(string: str, keep_notes: bool = False):
+    note = []
+    if keep_notes:
+        note = re.findall(NOTE_REGEX, string)
+    while "^" in string:
+        string = re.sub(NOTE_REGEX, '', string)
+    final_string = string.strip().strip("(").strip(")").strip("'").strip()
+    for n in note:
+        final_string += " " + n
+    return final_string
+
+
+def single_string_clean(string: str, keep_notes: bool = False):
     # the other function removes important characters
+    note = []
+    if keep_notes:
+        note = re.findall(NOTE_REGEX, string)
     while "^" in string:
-        string = re.sub(r'\[.\d+]', '', string)
-    return string.strip().strip("'")
+        string = re.sub(r'\[\^\d+]', '', string)
+    final_string = string.strip().strip("'")
+    for n in note:
+        final_string += " " + n
+    return final_string
 
 
-def read_dataframes(additional_args: Dict = {}):
+def read_dataframes(additional_args: Dict = {}, keep_notes: bool = False) -> Dict[str, pd.DataFrame]:
     dataframe = {}
     for sheet in sheets_mapping:
         with open(f'markdown/{sheet}.md', 'r') as file:
@@ -165,19 +183,39 @@ def read_dataframes(additional_args: Dict = {}):
             stop_at = None
             for line in enumerate(lines):
                 lines[line[0]] = lines[line[0]].replace("\\", "")
-                lines[line[0]] = re.sub(r'\[.\d+\]', '', lines[line[0]])
+                if not keep_notes:
+                    lines[line[0]] = re.sub(NOTE_REGEX, '', lines[line[0]])
                 if not line[1].strip().startswith("|"):
                     stop_at = line[0]
                     break
             if stop_at:
                 lines = lines[:stop_at]
         buffer = io.StringIO("".join(lines))
-        tmp_df = pd.read_table(buffer, sep="|", header=[0,1], skipinitialspace=True, **additional_args)
+        tmp_df = pd.read_table(buffer, sep="|", header=[0, 1], skipinitialspace=True,
+                               **additional_args)
         tmp_df.columns = tmp_df.columns.droplevel(1)
         tmp_df.pop("Unnamed: 0_level_0")
         tmp_df.pop(tmp_df.columns[-1])
         tuples = [x.split(",") for x in tmp_df.columns.to_list()]
-        tuples = [(clean_string(x[0]), clean_string(x[1])) if len(x) == 2 else (single_string_clean(x[0]), '') for x in tuples]
+        tuples = [(clean_string(x[0], keep_notes), clean_string(x[1], keep_notes))
+                  if len(x) == 2 else (single_string_clean(x[0], keep_notes), '') for x in tuples]
         tmp_df.columns = pd.MultiIndex.from_tuples(tuples)
         dataframe[sheet] = tmp_df
     return dataframe
+
+
+def extract_notes():
+    for sheet in sheets_mapping:
+        with open(f'markdown/{sheet}.md', 'r') as file:
+            lines = file.readlines()
+
+def note_id_extractor(elements, note_ids, name, row_index):
+    new_els = []
+    for i, h in enumerate(elements):
+        notes = re.findall(NOTE_REGEX, h)
+        if notes:
+            notes = [note.strip('[]') for note in notes]
+            note_ids[name].append((row_index, i, notes))
+            h = re.sub(NOTE_REGEX, '', h).strip()
+        new_els.append(h)
+    return new_els
