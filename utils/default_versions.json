@@ -54,7 +54,7 @@
     },
     "SignatureAlgsCertificate": {
         "NIST": "",
-        "BSI": "CERTIFICATE_SIGNATURES",
+        "BSI": "CERTIFICATESIGNATURES",
         "ANSSI": "",
         "ACN": "RECOMMENDED",
         "ENISA": "",

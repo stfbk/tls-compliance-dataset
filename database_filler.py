@@ -12,7 +12,7 @@ from utils.filler_utils import get_requirements_columns, get_columns_count_for_g
 
 dataframe = read_dataframes({"converters": converters, "dtype": str})
 for df in dataframe:
-    dataframe[df] = dataframe[df].applymap(
+    dataframe[df] = dataframe[df].map(
         lambda x: x.strip() if isinstance(x, str) else x)
 
 sheet_with_extra_table = {
@@ -25,44 +25,44 @@ cur = conn.cursor()
 
 def prepare_database():
     cur.execute("SELECT name FROM sqlite_master WHERE type='table'")
-    for table in cur.fetchall():
-        cur.execute("DELETE FROM " + table[0])
+    for t in cur.fetchall():
+        cur.execute("DELETE FROM " + t[0])
     conn.commit()
 
 
 def insert_guideline_info():
-    cur.executemany("INSERT OR REPLACE INTO Guideline VALUES (?, ?)",
-                    [(guideline, guidelines[guideline]) for guideline in guidelines])
+    cur.executemany(
+        "INSERT OR REPLACE INTO Guideline VALUES (?, ?)", list(guidelines.items()))
 
 
-def get_cell_for_df(df: pd.DataFrame, row_index: int, header):
+def get_cell_for_df(d: pd.DataFrame, row_index: int, h):
     col_index = 0
-    for col_index, col in enumerate(df.columns):
-        if col[0] == header[0]:
+    for col_index, col in enumerate(d.columns):
+        if col[0] == h[0]:
             break
-    return df.iloc[row_index: row_index + 1, col_index:col_index + 1].iat[0, 0]
+    return d.iloc[row_index: row_index + 1, col_index:col_index + 1].iat[0, 0]
 
 
-def get_name_from_index_for_sheet(index, sheet_name: str) -> str:
+def get_name_from_index_for_sheet(index2, sheet_name: str) -> str:
     """
-    Gets the name of the item for that row. Some sheets have the name column in a different position, for that case
-    see the different_names_pos dictionary
+    Gets the name of the item for that row. Some sheets have the name column in a 
+    different position, for that case see the different_names_pos dictionary.
     :param index: row index
     :param sheet_name: sheet in which the search should be done
     :return: item_name: the name for the row at index in the sheet
     """
     column = different_names_pos.get(sheet_name, (0, 1))[0]
-    return dataframe[sheet_name].iloc[index:index + 1, column:column + 1].iat[0, 0]
+    return dataframe[sheet_name].iloc[index2:index2 + 1, column:column + 1].iat[0, 0]
 
 
-def get_additional_info(index, sheet_name: str):
+def get_additional_info(index2, sheet_name: str):
     column, lengths = different_names_pos.get(sheet_name, (0, 1))
     return_vals = []
-    tmp_df = dataframe[sheet_name].iloc[index:index +
+    tmp_df = dataframe[sheet_name].iloc[index2:index2 +
                                         1, column:column + lengths]
     if lengths > 1:
-        for i in range(1, lengths):
-            val = tmp_df.iat[0, i]
+        for j in range(1, lengths):
+            val = tmp_df.iat[0, j]
             return_vals.append(val)
     return return_vals
 
@@ -80,12 +80,12 @@ def values_to_add(r: pd.Series, columns: pd.Index) -> Tuple:
     :param columns: The columns of the dataframe from which the row is taken
     """
     val_list = r.to_list()
-    i = 0
+    j = 0
     for c in columns:
         if already_parsed(c[0]):
-            val_list.pop(i)
+            val_list.pop(j)
         else:
-            i += 1
+            j += 1
     return tuple(val_list)
 
 
@@ -95,15 +95,15 @@ def has_extra_table(sheet_name: str) -> Tuple:
 
 def fill_extra_table(sheet_name: str) -> bool:
     """
-    This function takes the name of a sheet as a param, uses it to get the column names from which it should get data
-    and the table in which to insert the data using the sheet_with_extra_table dictionary and then adds this data to the
-    database.
+    This function takes the name of a sheet as a param, uses it to get the column names from which
+    it should get data and the table in which to insert the data using the sheet_with_extra_table
+    dictionary and then adds this data to the database.
 
     :param sheet_name: the sheet that has an extra table
     :return: False if the sheet doesn't have an extra table, True if it committed to the database
     """
-    column, table = sheet_with_extra_table.get(sheet_name, (None, None))
-    if not column or not table:
+    column, extra_table = sheet_with_extra_table.get(sheet_name, (None, None))
+    if not column or not extra_table:
         return False
     file_sheet: pd.DataFrame = dataframe[sheet_name]
     # The first column is almost always the names column
@@ -111,22 +111,22 @@ def fill_extra_table(sheet_name: str) -> bool:
     # Get only the columns that must be inserted in the extra table
     versions = file_sheet.filter(like=column)
     versions_names = {}
-    insertion_query = f"INSERT OR REPLACE INTO {table} VALUES (?, ?)"
+    insertion_query = f"INSERT OR REPLACE INTO {extra_table} VALUES (?, ?)"
     values_to_insert = []
     #   prepare the mapping from index to column
     for pos, version in enumerate(versions.columns.to_list()):
         versions_names[pos] = version[1]
 
-    for pos, content in versions.iterrows():
+    for pos, con in versions.iterrows():
         name = names[pos]
         # This variable i is used to cycle through the column's name without having to add it to the dataframe
         # It can probably be avoided by using the join in pandas, but I can't get it to work
-        i = 0
-        for c in content:
+        j = 0
+        for c in con:
             if pd.notna(c):
                 values_to_insert.append(
-                    (versions_names[i % len(versions.columns)], name))
-            i += 1
+                    (versions_names[j % len(versions.columns)], name))
+            j += 1
     cur.executemany(insertion_query, values_to_insert)
     conn.commit()
     return True
@@ -153,8 +153,8 @@ if __name__ == "__main__":
             for row in general_dataframe.iterrows():
                 # row[0] is the index, row[1] is the actual content of the line
                 values_tuple = values_to_add(row[1], general_dataframe.columns)
-                if not len(old_values):
-                    old_values = [v for v in values_tuple]
+                if not old_values:
+                    old_values = list(values_tuple)
                 else:
                     tmp_list = []
                     for i, v in enumerate(values_tuple):
@@ -278,11 +278,10 @@ if __name__ == "__main__":
 
             # Convert all the data into tuples to add them to the database and group them by guideline name
             values_groups = {}
-            for table in values_dict:
+            for table, entries in values_dict.items():
                 # Get the number of columns for the actual table
                 table_columns_count = len(cur.execute(
                     f"PRAGMA table_info({table})").fetchall())
-                entries = values_dict[table]
 
                 # # This is to prevent the "this or X" condition to appear in tables that don't need it
                 # # this condition checks if the guideline has multiple versions for this sheet
@@ -323,6 +322,7 @@ if __name__ == "__main__":
                         while len(entry) < table_columns_count:
                             entry.append(None)
                         values_groups[table].append(tuple(entry))
+
             for table, values in values_groups.items():
                 values_string = "("
                 # The values list should contain tuples that are all the same size
