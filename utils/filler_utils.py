@@ -9,10 +9,11 @@ from .configs import guidelines, levels_mapping, sheet_columns, sheets_mapping
 
 NOTE_REGEX = r'\[\^\d+\]'
 
+
 def split_sheet(sheet: pd.DataFrame):
     """
-    Splits the sheet at the first guideline column to have two dataframes one with general data and the other with the
-    data of the guidelines.
+    Splits the sheet at the first guideline column to have two dataframes one with general data
+    and the other with the data of the guidelines.
     :param sheet: the sheet that needs to be split
     :return: the two dataframes
     """
@@ -175,10 +176,10 @@ def single_string_clean(string: str, keep_notes: bool = False):
     return final_string
 
 
-def read_dataframes(additional_args: Dict = {}, keep_notes: bool = False) -> Dict[str, pd.DataFrame]:
+def read_dataframes(additional_args, keep_notes: bool = False) -> Dict[str, pd.DataFrame]:
     dataframe = {}
     for sheet in sheets_mapping:
-        with open(f'markdown/{sheet}.md', 'r') as file:
+        with open(f'markdown/{sheet}.md', 'r', encoding="utf-8") as file:
             lines = file.readlines()
             stop_at = None
             for line in enumerate(lines):
@@ -203,11 +204,6 @@ def read_dataframes(additional_args: Dict = {}, keep_notes: bool = False) -> Dic
         dataframe[sheet] = tmp_df
     return dataframe
 
-
-def extract_notes():
-    for sheet in sheets_mapping:
-        with open(f'markdown/{sheet}.md', 'r') as file:
-            lines = file.readlines()
 
 def note_id_extractor(elements, note_ids, name, row_index):
     new_els = []

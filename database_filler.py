@@ -10,10 +10,6 @@ from utils.filler_utils import get_requirements_columns, get_columns_count_for_g
     split_sheet, get_version_name_for_database, get_guideline_name_for_database, \
     is_double_guideline, get_first_col_for_guideline, get_column, read_dataframes
 
-dataframe = read_dataframes({"converters": converters, "dtype": str})
-for df in dataframe:
-    dataframe[df] = dataframe[df].map(
-        lambda x: x.strip() if isinstance(x, str) else x)
 
 sheet_with_extra_table = {
     "TLS extensions": ("applies to version", "TlsVersionExtension")
@@ -43,7 +39,7 @@ def get_cell_for_df(d: pd.DataFrame, row_index: int, h):
     return d.iloc[row_index: row_index + 1, col_index:col_index + 1].iat[0, 0]
 
 
-def get_name_from_index_for_sheet(index2, sheet_name: str) -> str:
+def get_name_from_index_for_sheet(d: pd.DataFrame, index2, sheet_name: str) -> str:
     """
     Gets the name of the item for that row. Some sheets have the name column in a 
     different position, for that case see the different_names_pos dictionary.
@@ -52,13 +48,13 @@ def get_name_from_index_for_sheet(index2, sheet_name: str) -> str:
     :return: item_name: the name for the row at index in the sheet
     """
     column = different_names_pos.get(sheet_name, (0, 1))[0]
-    return dataframe[sheet_name].iloc[index2:index2 + 1, column:column + 1].iat[0, 0]
+    return d[sheet_name].iloc[index2:index2 + 1, column:column + 1].iat[0, 0]
 
 
-def get_additional_info(index2, sheet_name: str):
+def get_additional_info(d: pd.DataFrame, index2, sheet_name: str):
     column, lengths = different_names_pos.get(sheet_name, (0, 1))
     return_vals = []
-    tmp_df = dataframe[sheet_name].iloc[index2:index2 +
+    tmp_df = d[sheet_name].iloc[index2:index2 +
                                         1, column:column + lengths]
     if lengths > 1:
         for j in range(1, lengths):
@@ -133,6 +129,10 @@ def fill_extra_table(sheet_name: str) -> bool:
 
 
 if __name__ == "__main__":
+    dataframe = read_dataframes({"converters": converters, "dtype": str})
+    for df in dataframe:
+        dataframe[df] = dataframe[df].map(
+            lambda x: x.strip() if isinstance(x, str) else x)
     prepare_database()
     insert_guideline_info()
     guidelines_mapping = {}
@@ -193,12 +193,14 @@ if __name__ == "__main__":
                 row_dictionary = row[1].to_dict()
                 for header in row_dictionary:
                     # header[0] is guideline_name
-                    item_name = get_name_from_index_for_sheet(row[0], sheet)
+                    item_name = get_name_from_index_for_sheet(dataframe, row[0], sheet)
                     old_name = item_name
                     guideline = get_guideline_name_for_database(header[0])
                     version_name = get_version_name_for_database(header[1])
                     table_name = sheet_mapped + guideline + version_name
                     content = row_dictionary[header]
+                    # if "[" in header[1]:
+                    #     print(header)
                     if header[1] in requirements_columns[header[0]]:
                         # This is the case for sheets like cipher suite
                         if sheet_columns.get(sheet, {}).get(header[0]):
@@ -234,7 +236,7 @@ if __name__ == "__main__":
                         # Then the name of the row is added
                         values_dict[table_name][row[0]].append(item_name)
                         # If this table needs extra data it gets added here
-                        for el in get_additional_info(row[0], sheet):
+                        for el in get_additional_info(dataframe, row[0], sheet):
                             values_dict[table_name][row[0]].append(el)
 
                         values_dict[table_name][row[0]].append(content)
@@ -242,25 +244,24 @@ if __name__ == "__main__":
                     elif pd.notna(header[1]) and get_first_col_for_guideline(
                             guidelines_dataframe, header[0]) != header[1]:
                         # update all the lists of the same guideline with the condition
-                        columns_to_apply = []
+                        keys = [el for el in values_dict if el.startswith(
+                            sheet_mapped+header[0])]
                         if " [" in header[1]:
                             columns_to_apply = header[1].split(
-                                " [")[1].replace("]", "").split(",")
+                                " [")[1].replace("]", "").split("-")
                             columns_to_apply = [int(c.strip())
                                                 for c in columns_to_apply]
-                        counter = 0
-                        for t_name, values_dict_table in values_dict.items():
-                            guideline_db_name = get_guideline_name_for_database(
-                                header[0])
-                            # this is needed only for the case of KeyLengthsBSI and
-                            # KeyLengths BSI (from ...)
-                            has_valid_underscore = "_" in guideline_db_name and "_" in t_name
-                            if t_name.startswith(sheet_mapped + guideline_db_name):
-                                if "_" not in t_name or has_valid_underscore:
-                                    counter += 1
-                                    if " [" in header[1] and counter not in columns_to_apply:
-                                        continue
-                                    values_dict_table[row[0]].append(content)
+                            # this is necessary to handle the fact that these sheets have one
+                            # less entry in the values_dict dictionary
+                            if sheet in sheet_columns:
+                                columns_to_apply = [
+                                    c-1 for c in columns_to_apply]
+                            keys = [keys[x] for x in columns_to_apply]
+                        guideline_db_name = get_guideline_name_for_database(
+                            header[0])
+                        for t_name in keys:
+                            values_dict[t_name][row[0]].append(content)
+
                     if is_double_guideline(header[0]) and table_name in values_dict:
                         tokens = header[0].split("+")
                         base_guideline = tokens[0].replace("(", "").strip()

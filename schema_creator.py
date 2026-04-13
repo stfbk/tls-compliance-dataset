@@ -99,5 +99,5 @@ def generate_template(df: Dict[str, pd.DataFrame]):
 
 dataframe = {}
 if __name__ == "__main__":
-    dataframe = read_dataframes()
+    dataframe = read_dataframes(dict())
     generate_template(dataframe)
