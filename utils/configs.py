@@ -20,7 +20,9 @@ guidelines = {
     "BSI": "",
     "Mozilla": "",
     "ACN": "",
-    "ENISA": ""
+    "ENISA": "",
+    "CNSAv1": "",
+    "CNSAv2": ""
 }
 
 levels_mapping = {

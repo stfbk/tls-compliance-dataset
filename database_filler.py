@@ -245,7 +245,7 @@ if __name__ == "__main__":
                             guidelines_dataframe, header[0]) != header[1]:
                         # update all the lists of the same guideline with the condition
                         keys = [el for el in values_dict if el.startswith(
-                            sheet_mapped+header[0])]
+                            sheet_mapped+header[0].upper())]
                         if " [" in header[1]:
                             columns_to_apply = header[1].split(
                                 " [")[1].replace("]", "").split("-")
