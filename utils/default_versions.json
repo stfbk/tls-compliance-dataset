@@ -5,6 +5,8 @@
         "ANSSI": "",
         "ACN": "RECOMMENDED",
         "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "transition",
         "AGID": "",
         "MOZILLA": "INTERMEDIATE"
     },
@@ -14,6 +16,8 @@
         "ANSSI": "",
         "ACN": "RECOMMENDED",
         "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "transition",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -40,6 +44,8 @@
         "ANSSI": "",
         "ACN": "",
         "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "transition",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -49,6 +55,8 @@
         "ANSSI": "",
         "ACN": "RECOMMENDED",
         "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "transition",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -67,6 +75,8 @@
         "ANSSI": "",
         "ACN": "RECOMMENDED",
         "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "transition",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -76,6 +86,8 @@
         "AGID": "INTERMEDIATE",
         "ACN": "RECOMMENDED",
         "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "transition",
         "NIST": "",
         "BSI": ""
     },
