@@ -6,7 +6,7 @@
         "ACN": "RECOMMENDED",
         "ENISA": "",
         "CNSAV1": "",
-        "CNSAV2": "transition",
+        "CNSAV2": "",
         "AGID": "",
         "MOZILLA": "INTERMEDIATE"
     },
@@ -17,7 +17,7 @@
         "ACN": "RECOMMENDED",
         "ENISA": "",
         "CNSAV1": "",
-        "CNSAV2": "transition",
+        "CNSAV2": "",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -28,7 +28,7 @@
         "ACN": "",
         "ENISA": "",
         "CNSAV1": "",
-        "CNSAV2": "transition",
+        "CNSAV2": "",
         "AGID": ""
     },
     "CertificateSignature": {
@@ -47,7 +47,7 @@
         "ACN": "",
         "ENISA": "",
         "CNSAV1": "",
-        "CNSAV2": "transition",
+        "CNSAV2": "",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -58,7 +58,7 @@
         "ACN": "RECOMMENDED",
         "ENISA": "",
         "CNSAV1": "",
-        "CNSAV2": "transition",
+        "CNSAV2": "",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -69,7 +69,7 @@
         "ACN": "RECOMMENDED",
         "ENISA": "",
         "CNSAV1": "",
-        "CNSAV2": "transition",
+        "CNSAV2": "",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -80,7 +80,7 @@
         "ACN": "RECOMMENDED",
         "ENISA": "",
         "CNSAV1": "",
-        "CNSAV2": "transition",
+        "CNSAV2": "",
         "MOZILLA": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
@@ -91,7 +91,7 @@
         "ACN": "RECOMMENDED",
         "ENISA": "",
         "CNSAV1": "",
-        "CNSAV2": "transition",
+        "CNSAV2": "",
         "NIST": "",
         "BSI": ""
     },
