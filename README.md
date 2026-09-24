@@ -19,7 +19,7 @@ The result of this process is a dataset that can be audited, inspected and peer 
 
 #### Glossary
 - Configurable element - each element whose availability can be set by the system administrator (e.g., specific protocol versions);
-- Guideline - a document issued by a national cybersecurity agency that contains technical requirement for various configurable elements;
+- Guideline - a document issued by a national cybersecurity agency that contains technical requirements for various configurable elements;
 - Level - the requirement level that every guideline assigns to each configurable element;
 - Profile - a use case defined by a guideline (e.g., customer-facing and government-facing service);
 - Variant - subset of elements that can have alternative configurations levels (e.g., prioritization of ephemeral keys use);
@@ -47,10 +47,10 @@ Each file lists the requirements level of
 	- [Certificate Extensions.md](<markdown/Certificate Extensions.md>): specific extensions;
 	- [Certificate Signature.md](<markdown/Certificate Signature.md>): algorithms that can be used to sign a certificate;
 - [Cipher Suites.md](<markdown/Cipher Suites.md>): cipher suites;
-- [Hash Algorithms.md](<markdown/Hash Algorithms.md>): the hash algorithms that can be used together with the respective [signatures](<markdown/Signature Algorithms.md>);
+- [Hash Algorithms.md](<markdown/Hash Algorithm.md>): the hash algorithms that can be used together with the respective [signatures](<markdown/Signature Algorithms.md>);
 - [Key Lengths.md](<markdown/Key Lengths.md>): the key lengths that can be used for both key exchange and signature algorithms;
 - [Misc.md](<markdown/Misc.md>): other configurable elements that do not fall into a specific category (e.g., vulnerability-specific mitigations);
-- [Protocol.md](<markdown/Protocol.md>): SSL and TLS versions;
+- [Protocol.md](<markdown/Protocols.md>): SSL and TLS versions;
 - [Signature Algorithms.md](<markdown/Signature Algorithms.md>): the signature algorithms that can be used for forward secrecy;
 - [TLS Extensions.md](<markdown/TLS extensions.md>): the TLS extensions that can be used during a secure transmission.
 
@@ -66,7 +66,7 @@ Please refer to the [Wiki](https://github.com/stfbk/tls-compliance-dataset/wiki)
 
 ## Related Projects
 
-This dataset is the result of a study aimed to design a methodology to assess the compliance level of new and existing webservers. More detail about the methodology and the process behind its creation can be found in the paper *[Automating Compliance for Improving TLS Security Postures: An Assessment of Public Administration Endpoints](https://www.scitepress.org/Link.aspx?doi=10.5220/0012764700003767)*:
+This dataset is the result of a study aimed to design a methodology to assess the compliance level of new and existing webservers. More details about the methodology and the process behind its creation can be found in the paper *[Automating Compliance for Improving TLS Security Postures: An Assessment of Public Administration Endpoints](https://www.scitepress.org/Link.aspx?doi=10.5220/0012764700003767)*:
 
 ```BibTex
 @conference{secrypt24,
