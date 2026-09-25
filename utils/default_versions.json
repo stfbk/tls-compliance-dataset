@@ -29,7 +29,8 @@
         "ENISA": "",
         "CNSAV1": "",
         "CNSAV2": "",
-        "AGID": ""
+        "AGID": "",
+        "TLSREF": ""
     },
     "CertificateSignature": {
         "NIST": "",
@@ -58,9 +59,7 @@
         "ACN": "RECOMMENDED",
         "ENISA": "",
         "CNSAV1": "",
-        "CNSAV2": "",
-        "TLSREF": "INTERMEDIATE",
-        "AGID": "INTERMEDIATE"
+        "CNSAV2": ""
     },
     "SignatureAlgsCertificate": {
         "NIST": "",
@@ -69,9 +68,7 @@
         "ACN": "RECOMMENDED",
         "ENISA": "",
         "CNSAV1": "",
-        "CNSAV2": "",
-        "TLSREF": "INTERMEDIATE",
-        "AGID": "INTERMEDIATE"
+        "CNSAV2": ""
     },
     "Groups": {
         "NIST": "",
@@ -99,13 +96,12 @@
         "NIST": "",
         "BSI": "",
         "ANSSI": "",
-        "TLSREF": ""
+        "TLSREF": "INTERMEDIATE"
     },
     "CertificateExtensions": {
         "NIST": "",
         "BSI": "",
-        "ANSSI": "",
-        "TLSREF": ""
+        "ANSSI": ""
     },
     "Misc": {
         "NIST": "",
