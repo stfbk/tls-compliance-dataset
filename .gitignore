@@ -3,3 +3,4 @@ output.prisma
 requirements.db
 requirements.ods
 .env/
+.vscod*/

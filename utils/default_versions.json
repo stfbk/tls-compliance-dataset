@@ -1,0 +1,115 @@
+{
+    "Protocol": {
+        "NIST": "",
+        "BSI": "CUSTOMERFACING",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "",
+        "AGID": "",
+        "TLSREF": "INTERMEDIATE"
+    },
+    "CipherSuite": {
+        "NIST": "PREFERRED1",
+        "BSI": "PREFERRED1",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "",
+        "TLSREF": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "Extension": {
+        "NIST": "",
+        "BSI": "",
+        "ANSSI": "",
+        "ACN": "",
+        "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "",
+        "AGID": ""
+    },
+    "CertificateSignature": {
+        "NIST": "",
+        "BSI": "",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "ENISA": "",
+        "TLSREF": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "Hash": {
+        "NIST": "",
+        "BSI": "",
+        "ANSSI": "",
+        "ACN": "",
+        "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "",
+        "TLSREF": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "Signature": {
+        "NIST": "",
+        "BSI": "CLIENT_SERVERSIGNATURES",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "",
+        "TLSREF": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "SignatureAlgsCertificate": {
+        "NIST": "",
+        "BSI": "CERTIFICATESIGNATURES",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "",
+        "TLSREF": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "Groups": {
+        "NIST": "",
+        "BSI": "CUSTOMERFACING",
+        "ANSSI": "",
+        "ACN": "RECOMMENDED",
+        "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "",
+        "TLSREF": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE"
+    },
+    "KeyLengths": {
+        "ANSSI": "",
+        "TLSREF": "INTERMEDIATE",
+        "AGID": "INTERMEDIATE",
+        "ACN": "RECOMMENDED",
+        "ENISA": "",
+        "CNSAV1": "",
+        "CNSAV2": "",
+        "NIST": "",
+        "BSI": ""
+    },
+    "Certificate": {
+        "NIST": "",
+        "BSI": "",
+        "ANSSI": "",
+        "TLSREF": ""
+    },
+    "CertificateExtensions": {
+        "NIST": "",
+        "BSI": "",
+        "ANSSI": "",
+        "TLSREF": ""
+    },
+    "Misc": {
+        "NIST": "",
+        "BSI": "",
+        "AGID": ""
+    }
+}
