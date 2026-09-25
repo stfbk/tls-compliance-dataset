@@ -18,7 +18,7 @@ guidelines = {
     "ANSSI": "",
     "AgID": "",
     "BSI": "",
-    "Mozilla": "",
+    "TLSRef": "",
     "ACN": "",
     "ENISA": "",
     "CNSAv1": "",

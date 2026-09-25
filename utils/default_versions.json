@@ -1,6 +1,6 @@
 {
     "Protocol": {
-        "NIST": "1_1_2024CUSTOMERFACING",
+        "NIST": "",
         "BSI": "CUSTOMERFACING",
         "ANSSI": "",
         "ACN": "RECOMMENDED",
@@ -8,7 +8,7 @@
         "CNSAV1": "",
         "CNSAV2": "",
         "AGID": "",
-        "MOZILLA": "INTERMEDIATE"
+        "TLSREF": "INTERMEDIATE"
     },
     "CipherSuite": {
         "NIST": "PREFERRED1",
@@ -18,7 +18,7 @@
         "ENISA": "",
         "CNSAV1": "",
         "CNSAV2": "",
-        "MOZILLA": "INTERMEDIATE",
+        "TLSREF": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
     "Extension": {
@@ -37,7 +37,7 @@
         "ANSSI": "",
         "ACN": "RECOMMENDED",
         "ENISA": "",
-        "MOZILLA": "INTERMEDIATE",
+        "TLSREF": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
     "Hash": {
@@ -48,7 +48,7 @@
         "ENISA": "",
         "CNSAV1": "",
         "CNSAV2": "",
-        "MOZILLA": "INTERMEDIATE",
+        "TLSREF": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
     "Signature": {
@@ -59,7 +59,7 @@
         "ENISA": "",
         "CNSAV1": "",
         "CNSAV2": "",
-        "MOZILLA": "INTERMEDIATE",
+        "TLSREF": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
     "SignatureAlgsCertificate": {
@@ -70,7 +70,7 @@
         "ENISA": "",
         "CNSAV1": "",
         "CNSAV2": "",
-        "MOZILLA": "INTERMEDIATE",
+        "TLSREF": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
     "Groups": {
@@ -81,12 +81,12 @@
         "ENISA": "",
         "CNSAV1": "",
         "CNSAV2": "",
-        "MOZILLA": "INTERMEDIATE",
+        "TLSREF": "INTERMEDIATE",
         "AGID": "INTERMEDIATE"
     },
     "KeyLengths": {
         "ANSSI": "",
-        "MOZILLA": "INTERMEDIATE",
+        "TLSREF": "INTERMEDIATE",
         "AGID": "INTERMEDIATE",
         "ACN": "RECOMMENDED",
         "ENISA": "",
@@ -99,13 +99,13 @@
         "NIST": "",
         "BSI": "",
         "ANSSI": "",
-        "MOZILLA": ""
+        "TLSREF": ""
     },
     "CertificateExtensions": {
         "NIST": "",
         "BSI": "",
         "ANSSI": "",
-        "MOZILLA": ""
+        "TLSREF": ""
     },
     "Misc": {
         "NIST": "",
