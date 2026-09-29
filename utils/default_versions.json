@@ -8,7 +8,8 @@
         "CNSAV1": "",
         "CNSAV2": "",
         "AGID": "",
-        "TLSREF": "INTERMEDIATE"
+        "TLSREF": "INTERMEDIATE",
+        "NCSC": ""
     },
     "CipherSuite": {
         "NIST": "PREFERRED1",
@@ -19,7 +20,8 @@
         "CNSAV1": "",
         "CNSAV2": "",
         "TLSREF": "INTERMEDIATE",
-        "AGID": "INTERMEDIATE"
+        "AGID": "INTERMEDIATE",
+        "NCSC": ""
     },
     "Extension": {
         "NIST": "",
@@ -29,7 +31,9 @@
         "ENISA": "",
         "CNSAV1": "",
         "CNSAV2": "",
-        "AGID": ""
+        "AGID": "",
+        "TLSREF": "",
+        "NCSC": ""
     },
     "CertificateSignature": {
         "NIST": "",
@@ -38,7 +42,8 @@
         "ACN": "RECOMMENDED",
         "ENISA": "",
         "TLSREF": "INTERMEDIATE",
-        "AGID": "INTERMEDIATE"
+        "AGID": "INTERMEDIATE",
+        "NCSC": ""
     },
     "Hash": {
         "NIST": "",
@@ -49,7 +54,8 @@
         "CNSAV1": "",
         "CNSAV2": "",
         "TLSREF": "INTERMEDIATE",
-        "AGID": "INTERMEDIATE"
+        "AGID": "INTERMEDIATE",
+        "NCSC": ""
     },
     "Signature": {
         "NIST": "",
@@ -78,7 +84,8 @@
         "CNSAV1": "",
         "CNSAV2": "",
         "TLSREF": "INTERMEDIATE",
-        "AGID": "INTERMEDIATE"
+        "AGID": "INTERMEDIATE",
+        "NCSC": ""
     },
     "KeyLengths": {
         "ANSSI": "",
@@ -89,7 +96,8 @@
         "CNSAV1": "",
         "CNSAV2": "",
         "NIST": "",
-        "BSI": ""
+        "BSI": "",
+        "NCSC": ""
     },
     "Certificate": {
         "NIST": "",
@@ -101,11 +109,13 @@
         "NIST": "",
         "BSI": "",
         "ANSSI": "",
-        "TLSREF": ""
+        "TLSREF": "",
+        "NCSC": ""
     },
     "Misc": {
         "NIST": "",
         "BSI": "",
-        "AGID": ""
+        "AGID": "",
+        "NCSC": ""
     }
 }
