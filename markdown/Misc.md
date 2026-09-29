@@ -1,4 +1,5 @@
- | Misc                           | ('NIST', '') | ('BSI', '')     | ('ANSSI', '') | ('AgID', '')    |
- | :----------------------------- | :----------- | :-------------- | ------------: | :-------------- |
- | Use TLS Compression            | must not     | not recommended |               | not recommended |
- | Client-initiated renegotiation |              |                 |               | not recommended |
+| Misc                           | ('NIST', '') | ('BSI', '')     | ('ANSSI', '') | ('AgID', '')    | ('NCSC', '' ) | ('NCSC', 'Condition')                                                                                       |
+| :----------------------------- | :----------- | :-------------- | ------------: | :-------------- | :------------ | ----------------------------------------------------------------------------------------------------------- |
+| Use TLS Compression            | must not     | not recommended |               | not recommended | must not      |                                                                                                             |
+| Client-initiated renegotiation |              |                 |               | not recommended | optional      | EXTENSION 65281 AND NOTE_ENABLED a limit should be set for renegotiation to mitigate potential DoS attacks. |
+s

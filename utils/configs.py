@@ -22,7 +22,8 @@ guidelines = {
     "ACN": "",
     "ENISA": "",
     "CNSAv1": "",
-    "CNSAv2": ""
+    "CNSAv2": "",
+    "NCSC": ""
 }
 
 levels_mapping = {
