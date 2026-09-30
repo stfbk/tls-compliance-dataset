@@ -1,6 +1,6 @@
 {
     "Protocol": {
-        "NIST": "",
+        "NIST": "CUSTOMERFACING",
         "BSI": "CUSTOMERFACING",
         "ANSSI": "",
         "ACN": "RECOMMENDED",
