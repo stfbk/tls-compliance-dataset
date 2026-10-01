@@ -1,3 +1,4 @@
+import re
 import sqlite3
 from copy import deepcopy
 from typing import Tuple
@@ -8,7 +9,7 @@ from utils.configs import sheets_mapping, different_names_pos, sheet_columns, gu
     converters, has_numeric_id
 from utils.filler_utils import get_requirements_columns, get_columns_count_for_guideline, \
     split_sheet, get_version_name_for_database, get_guideline_name_for_database, \
-    is_double_guideline, get_first_col_for_guideline, get_column, read_dataframes
+    is_double_guideline, get_first_col_for_guideline, get_column, read_dataframes, NOTE_REGEX
 
 
 sheet_with_extra_table = {
@@ -132,6 +133,7 @@ if __name__ == "__main__":
     dataframe = read_dataframes({"converters": converters, "dtype": str})
     for df in dataframe:
         dataframe[df] = dataframe[df].map(
+            lambda x: re.sub(NOTE_REGEX, "", x) if isinstance(x, str) else x).map(
             lambda x: x.strip() if isinstance(x, str) else x)
     prepare_database()
     insert_guideline_info()
