@@ -146,7 +146,8 @@ def get_standardized_level(level):
     :return:
     """
     if isinstance(level, str):
-        return level.replace("*", "").replace("°", "").strip()
+        level = re.sub(NOTE_REGEX, '', level)
+        return level.replace("*", "").replace("°", "").replace("\\", "").strip()
     else:
         return ""
 
