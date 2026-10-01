@@ -29,8 +29,7 @@
         "ENISA": "",
         "CNSAV1": "",
         "CNSAV2": "",
-        "AGID": "",
-        "TLSREF": ""
+        "AGID": ""
     },
     "CertificateSignature": {
         "NIST": "",
@@ -101,7 +100,8 @@
     "CertificateExtensions": {
         "NIST": "",
         "BSI": "",
-        "ANSSI": ""
+        "ANSSI": "",
+        "TLSREF": ""
     },
     "Misc": {
         "NIST": "",
