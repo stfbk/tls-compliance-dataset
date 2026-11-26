@@ -60,8 +60,9 @@ different_names_pos = {
 # respective sheet
 sheet_columns = {
     "Cipher Suites": {
-        "NIST": [1, 2, 3],
-        "BSI": [1, 2, 3]
+        "NIST": [1, 2],
+        "BSI": [1, 2, 3],
+        "eIDAS": [1, 2]
     },
 }
 
